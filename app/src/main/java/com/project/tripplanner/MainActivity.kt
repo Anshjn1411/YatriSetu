@@ -14,7 +14,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.project.tripplanner.ui.theme.TripPlannerTheme
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+
+import com.example.travelapp.TravelViewModel
+
+import com.example.travelapp.TripPlannerTheme
+
 
 class MainActivity : ComponentActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
@@ -23,28 +31,24 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             TripPlannerTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+                val navController = rememberNavController()
+                val viewModel: TravelViewModel = viewModel()
+
+                NavHost(navController = navController, startDestination = "trip_input") {
+                    composable("trip_input") {
+                        TripInputScreen(navController, viewModel)
+                    }
+                    composable("trip_actions") {
+                        TripActionScreen(navController , viewModel)
+                    }
+                    composable("trip_response") {
+                        TripResponseScreen(viewModel = viewModel, onBack = { navController.popBackStack() })
+                    }
                 }
+
             }
         }
     }
 }
 
-@RequiresApi(Build.VERSION_CODES.O)
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    val viewModel = remember { TripPlannerViewModel() }
-    DivyaKripaTempleTripScreen(viewModel = viewModel)
-}
-//
-//@Preview(showBackground = true)
-//@Composable
-//fun GreetingPreview() {
-//    TripPlannerTheme {
-//        Greeting("Android")
-//    }
-//}
+

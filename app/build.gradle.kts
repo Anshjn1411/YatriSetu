@@ -40,6 +40,9 @@ android {
 }
 
 dependencies {
+    implementation("androidx.compose.material:material-icons-extended")
+    implementation("dev.jeziellago:compose-markdown:0.4.2")
+
     // Networking (Retrofit & OkHttp)
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
