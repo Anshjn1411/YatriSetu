@@ -34,9 +34,9 @@
 
 ## 📸 Screenshots
 
-| MainScreen | Login                                           | Buttons                                          | Responses                                               
-|--------|-------------------------------------------------|----------------------------------------------------|--------------------------------------------------------|
-| ![Splash](./app/src/main/res/drawable/main.png) | ![Login](./app/src/main/res/drawable/things.png) | ![Sign Up](./app/src/main/res/drawable/response.png) 
+| MainScreen | features                                           | Responses                                                                               
+|--------|-------------------------------------------------|----------------------------------------------------
+| ![Main](./app/src/main/res/drawable/main.png) | ![Features](./app/src/main/res/drawable/things.png) | ![Response](./app/src/main/res/drawable/response.png) 
 
 
 
