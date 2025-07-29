@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 🇮🇳 YatraBot - Your Indian Travel AI Companion
 
 <div align="center">
@@ -217,3 +218,9 @@ graph TD
 ---
 
 **Happy Traveling! 🧳✈️**
+=======
+'''
+python main.py
+'''
+After clicking on any button just wait for a while and then scroll down you will see a dropdown card with formatted text .
+>>>>>>> a97b579 (Create README.md)
