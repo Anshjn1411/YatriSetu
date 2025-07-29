@@ -1,9 +1,11 @@
 package com.project.tripplanner
 
+import okhttp3.OkHttpClient
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.*
+import java.util.concurrent.TimeUnit
 
 // Data Classes for Requests
 data class PlanTripRequest(
@@ -289,13 +291,21 @@ interface TripPlannerApiService {
     ): Response<GeminiResponse>
 }
 
-// Retrofit Instance
+// ✅ Retrofit Instance with Timeout Handling
 object RetrofitInstance {
     private const val BASE_URL = "http://10.0.2.2:5000/"
 
     private fun getInstance(): Retrofit {
+        // Custom OkHttpClient with timeout
+        val okHttpClient = OkHttpClient.Builder()
+            .connectTimeout(60, TimeUnit.SECONDS) // ⏳ connect timeout
+            .readTimeout(60, TimeUnit.SECONDS)    // 📖 read timeout
+            .writeTimeout(60, TimeUnit.SECONDS)   // ✍️ write timeout
+            .build()
+
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
+            .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
@@ -304,11 +314,11 @@ object RetrofitInstance {
         getInstance().create(TripPlannerApiService::class.java)
     }
 
-    // Keep your existing instance for backward compatibility
     val response2: TripPlannerApiService by lazy {
         getInstance().create(TripPlannerApiService::class.java)
     }
 }
+
 
 // Usage Examples and Helper Functions
 object ApiHelper {

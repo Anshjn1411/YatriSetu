@@ -20,8 +20,10 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 
 import com.example.travelapp.TravelViewModel
+import com.project.tripplanner.ui.theme.EnhancedTripActionScreen
+import com.project.tripplanner.ui.theme.EnhancedTripInputScreen
 
-import com.example.travelapp.TripPlannerTheme
+import com.project.tripplanner.ui.theme.YatraBotTheme
 
 
 class MainActivity : ComponentActivity() {
@@ -30,19 +32,19 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            TripPlannerTheme {
+            YatraBotTheme  {
                 val navController = rememberNavController()
                 val viewModel: TravelViewModel = viewModel()
 
                 NavHost(navController = navController, startDestination = "trip_input") {
                     composable("trip_input") {
-                        TripInputScreen(navController, viewModel)
+                        EnhancedTripInputScreen(navController, viewModel)
                     }
                     composable("trip_actions") {
-                        TripActionScreen(navController , viewModel)
+                        EnhancedTripActionScreen(navController , viewModel)
                     }
                     composable("trip_response") {
-                        TripResponseScreen(viewModel = viewModel, onBack = { navController.popBackStack() })
+                        EnhancedTripResponseScreen(viewModel = viewModel, onBack = { navController.popBackStack() })
                     }
                 }
 
